@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado da Nota</title>
+    <style>
+        /* Estilos gerais da página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 50%;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .resultado {
+            font-size: 18px;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f4f4f4;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .aprovado {
+            color: green;
+        }
+
+        .recuperacao {
+            color: orange;
+        }
+
+        .reprovado {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Resultado da Nota do Aluno</h1>
+    <div class="container">
+        <!-- Formulário para o usuário inserir os dados -->
+        <p>Digite as informações do aluno e as notas:</p>
+        <input type="text" id="nome" placeholder="Nome do aluno">
+        <input type="number" id="nota1" placeholder="Nota 1" min="0" max="10">
+        <input type="number" id="nota2" placeholder="Nota 2" min="0" max="10">
+        <input type="number" id="nota3" placeholder="Nota 3" min="0" max="10">
+        <input type="number" id="nota4" placeholder="Nota 4" min="0" max="10">
+        <br>
+        <button onclick="calcularResultado()">Calcular Resultado</button>
+
+        <!-- Área onde o resultado será exibido -->
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularResultado() {
+            // Obtém os valores inseridos pelo usuário
+            let nome = document.getElementById('nome').value;
+            let nota1 = parseFloat(document.getElementById('nota1').value);
+            let nota2 = parseFloat(document.getElementById('nota2').value);
+            let nota3 = parseFloat(document.getElementById('nota3').value);
+            let nota4 = parseFloat(document.getElementById('nota4').value);
+
+            // Verifica se todos os campos foram preenchidos
+            if (!nome || isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || isNaN(nota4)) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            // Calcula a média
+            let media = (nota1 + nota2 + nota3 + nota4) / 4;
+            let situacao;
+
+            // Determina a situação do aluno com base na média
+            if (media >= 7) {
+                situacao = 'aprovado';
+            } else if (media >= 5) {
+                situacao = 'recuperacao';
+            } else {
+                situacao = 'reprovado';
+            }
+
+            // Exibe o resultado na página
+            let resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.classList.add('resultado');
+            resultadoDiv.innerHTML = `
+                <p><strong>Aluno:</strong> ${nome}</p>
+                <p><strong>Média:</strong> ${media.toFixed(2)}</p>
+                <p class="${situacao}"><strong>Situação:</strong> ${situacao}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>

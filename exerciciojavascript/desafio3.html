@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Ano Bissexto</title>
+    <style>
+        /* Estilo geral da página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #4CAF50;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            width: 100%;
+            display: inline-block;
+        }
+
+        .bissexto {
+            color: green;
+            font-weight: bold;
+        }
+
+        .nao-bissexto {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Verificador de Ano Bissexto</h1>
+        <input type="number" id="ano" placeholder="Digite um ano" min="0" />
+        <button onclick="verificarAno()">Verificar</button>
+        
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script>
+        // Função para verificar se o ano é bissexto
+        function verificarAno() {
+            let ano = parseInt(document.getElementById('ano').value);
+            
+            // Verifica se o ano foi informado
+            if (isNaN(ano) || ano <= 0) {
+                alert("Por favor, insira um ano válido.");
+                return;
+            }
+
+            // Função para verificar se o ano é bissexto
+            function verificarBissexto(ano) {
+                if ((ano % 4 === 0 && ano % 100 !== 0) || (ano % 400 === 0)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            // Exibe o resultado na página
+            let resultadoDiv = document.getElementById('resultado');
+            
+            if (verificarBissexto(ano)) {
+                resultadoDiv.innerHTML = `O ano <span class="bissexto">${ano}</span> é bissexto!`;
+            } else {
+                resultadoDiv.innerHTML = `O ano <span class="nao-bissexto">${ano}</span> não é bissexto.`;
+            }
+        }
+    </script>
+
+</body>
+</html>

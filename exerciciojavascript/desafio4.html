@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Gorjeta</title>
+    <style>
+        /* Estilos gerais para a página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .resultado p {
+            margin: 5px 0;
+        }
+
+        .resultado .destaque {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .erro {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Calculadora de Gorjeta</h1>
+        <input type="number" id="valorConta" placeholder="Digite o valor da conta (R$)" step="0.01" min="0" required />
+        <input type="text" id="satisfacao" placeholder="Qual o nível de satisfação (bom, ótimo, excelente)" required />
+        <button onclick="calcularGorjeta()">Calcular</button>
+
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script>
+        // Função para calcular a gorjeta
+        function calcularGorjeta() {
+            // Obtém os valores dos inputs
+            let valorConta = parseFloat(document.getElementById('valorConta').value);
+            let satisfacao = document.getElementById('satisfacao').value.toLowerCase();
+
+            // Verifica se o valor da conta é válido
+            if (isNaN(valorConta) || valorConta <= 0) {
+                alert("Por favor, insira um valor válido para a conta.");
+                return;
+            }
+
+            let porcentagemGorjeta;
+
+            // Define a porcentagem da gorjeta com base no nível de satisfação
+            if (satisfacao === 'bom') {
+                porcentagemGorjeta = 0.10; // 10% para bom
+            } else if (satisfacao === 'ótimo') {
+                porcentagemGorjeta = 0.15; // 15% para ótimo
+            } else if (satisfacao === 'excelente') {
+                porcentagemGorjeta = 0.20; // 20% para excelente
+            } else {
+                alert('Nível de satisfação inválido! Considerando "bom" como padrão.');
+                porcentagemGorjeta = 0.10; // Caso o usuário forneça uma entrada inválida, consideramos "bom"
+            }
+
+            // Calcula o valor da gorjeta e o valor total
+            let gorjeta = valorConta * porcentagemGorjeta;
+            let valorTotal = valorConta + gorjeta;
+
+            // Exibe o resultado na página
+            let resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `
+                <p>Valor da conta: R$ ${valorConta.toFixed(2)}</p>
+                <p>Gorjeta (${(porcentagemGorjeta * 100)}%): R$ ${gorjeta.toFixed(2)}</p>
+                <p class="destaque">Valor total a ser pago: R$ ${valorTotal.toFixed(2)}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>
