@@ -7,28 +7,90 @@
     <title>Jogos</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Jogos em JAVASCRIPT</h1>
-        <p id="saudacao"></p>
-    </div>
-
-    <button onclick="window.location.href='/pages/desafio1.html'"><ul>Jogo de Adivinhação</ul></button>
-    <button onclick="window.location.href='/pages/desafio2.html'"><ul>Calculadora de Média Escolar</ul></button>
-    <button onclick="window.location.href='/pages/desafio3.html'"><ul>Verificador de Ano Bissexto</ul></button>
-    <button onclick="window.location.href='/pages/desafio4.html'"><ul>Calculadora de Gorjeta</ul></button>
-    <script>
-        let horaAtual = new Date().getHours();
-        let saudacao;
-
-        if (horaAtual >= 6 && horaAtual < 12) {
-            saudacao = "Bom dia!";
-        } else if (horaAtual >= 12 && horaAtual < 18) {
-            saudacao = "Boa tarde!";
-        } else {
-            saudacao = "Boa noite!";
-        }
-
-        document.getElementById('saudacao').innerText = saudacao;
-    </script>
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <title>Jogos</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Jogos em JAVASCRIPT</h1>
+            <p id="saudacao"></p>
+        </div>
+    
+        <div class="buttons">
+            <button onclick="window.location.href='/desafio1.html'">Jogo de Adivinhação</button>
+            <button onclick="window.location.href='/desafio2.html'">Calculadora de Média Escolar</button>
+            <button onclick="window.location.href='/desafio3.html'">Verificador de Ano Bissexto</button>
+            <button onclick="window.location.href='/desafio4.html'">Calculadora de Gorjeta</button>
+        </div>
+    
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f8ff;
+                color: #333;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+     p{
+        font-size: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        color:#5b29b9;
+     }
+            .container {
+                padding: 150px;
+            }
+    
+            h1 {
+                color: #2c3e50;
+                font-size: 50px;
+            }
+    
+           
+            .buttons {
+                margin-top: 30px;
+            }
+    
+            button {
+                padding: 15px 30px;
+                font-size: 18px;
+                cursor: pointer;
+                background-color: #5b29b9;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                margin: 10px;
+                transition: background-color 0.3s;
+            }
+    
+            button:hover {
+                background-color: #4CAF50;
+            }
+        </style>
+    
+        <script>
+            let horaAtual = new Date().getHours();
+            let saudacao;
+    
+            if (horaAtual >= 6 && horaAtual < 12) {
+                saudacao = "Bom dia!";
+            } else if (horaAtual >= 12 && horaAtual < 18) {
+                saudacao = "Boa tarde!";
+            } else {
+                saudacao = "Boa noite!";
+            }
+    
+            document.getElementById('saudacao').innerText = saudacao;
+        </script>
+    </body>
+    </html>
+    
 </body>
 </html>
+

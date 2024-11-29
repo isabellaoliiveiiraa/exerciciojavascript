@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificar Ano Bissexto</title>
     <style>
-        /* Estilo geral da página */
+   
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -28,7 +28,7 @@
 
         h1 {
             font-size: 24px;
-            color: #4CAF50;
+            color: #5b29b9;
         }
 
         input {
@@ -42,7 +42,7 @@
 
         button {
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #5b29b9;
             color: white;
             border: none;
             border-radius: 5px;
@@ -81,7 +81,8 @@
         <h1>Verificador de Ano Bissexto</h1>
         <input type="number" id="ano" placeholder="Digite um ano" min="0" />
         <button onclick="verificarAno()">Verificar</button>
-        
+        <button onclick="window.history.back()">Voltar</button>
+
         <div id="resultado" class="resultado"></div>
     </div>
 
@@ -114,6 +115,8 @@
                 resultadoDiv.innerHTML = `O ano <span class="nao-bissexto">${ano}</span> não é bissexto.`;
             }
         }
+
+
     </script>
 
 </body>
